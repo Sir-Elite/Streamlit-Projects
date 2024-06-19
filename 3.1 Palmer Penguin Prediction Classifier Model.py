@@ -2,7 +2,7 @@ import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 import pickle
 
-penguins = pd.read_csv('penguins_cleaned.csv')
+penguins = pd.read_csv('3. penguins_cleaned.csv')
 
 df = penguins.copy()
 target = 'species'
@@ -12,7 +12,6 @@ encode = ['sex', 'island']
 for column in encode:
     dummy = pd.get_dummies(df[column], prefix=column)  # encoding function
     df = pd.concat([df, dummy], axis=1)
-    print(df)
     del df[column]
 
 target_mapper = {
@@ -36,4 +35,4 @@ classifier = RandomForestClassifier()
 classifier.fit(x, y)
 
 # Save the model "pickle.dump(model_name, open('file_name.pkl', 'wb'))"
-pickle.dump(classifier, open('penguins_classifier.pkl', 'wb'))
+pickle.dump(classifier, open('3 penguins_classifier.pkl', 'wb'))
